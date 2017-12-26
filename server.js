@@ -54,9 +54,7 @@ app.get('/testing', function(req,res){
 })
 
 
-app.listen(8080, function() {
-  console.log('The app is running on 8080');
-});
+app.listen(4000, 'http://198.199.97.120/')
 
 
 // ************* Database stuff for reference ********************

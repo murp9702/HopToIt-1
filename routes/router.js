@@ -6,10 +6,53 @@ const request = require('request');
 var path = require('path');
 
 // GET route for reading data
-// router.get('/', function (req, res, next) {
+// app.get('/', function (req, res, next) {
 //   console.log("here")
-//   return res.sendFile(path.join(__dirname + '/index.html'));
+//   return res.sendFile(path.join(__dirname + 'public/index.html'));
 // });
+
+
+
+app.get('/server', function(request, response) {
+    response.sendFile("./public/directions.html", {root: './'});
+    console.log("yes")
+});
+
+app.post('/add', function(request, response) {
+    //add to map functionality
+    response.send("added item")
+});
+
+app.post('/remove', function(request, response) {
+    console.log("data: " + data)
+    console.log("item: " + item)
+    // todoModel.findByIdAndRemove(request.body._id, function(err, todo){
+    response.send("deleted item")
+});
+
+app.get('/api', function(req, res) {
+  console.log(req.query);
+  //var breweryUrl = `http://api.brewerydb.com/v2/beers?name=Fat+Tire&key=58bc55fe9138082bf63a6f6ff8c1c861`;
+  var breweryUrl = `http://api.brewerydb.com/v2/locations?locality=${req.query.locality}&region=${req.query.region}&key=58bc55fe9138082bf63a6f6ff8c1c861`;
+  request(breweryUrl, function(err, response, body) {
+    console.log("started API request");
+    res.send(body)
+  })
+})
+
+app.get('/apiZip', function(req, res) {
+  //console.log(req.query);
+  var breweryUrl = `http://api.brewerydb.com/v2/locations?postalCode=${req.query.postalCode}&key=58bc55fe9138082bf63a6f6ff8c1c861`;
+  request(breweryUrl, function(err, response, body) {
+    console.log("started API request");
+    res.send(body)
+  })
+})
+
+app.get('/testing', function(req,res){
+    res.sendFile("./public/testing.html", {root: './'});
+})
+
 
 
 // route for remove function
