@@ -54,7 +54,7 @@ app.get('/testing', function(req,res){
 })
 
 
-app.listen(8080, function() {
+app.listen(4000, function() {
   console.log('The app is running on 8080');
 });
 
